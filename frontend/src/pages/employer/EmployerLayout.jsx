@@ -1,0 +1,78 @@
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
+import { Link, Outlet } from "react-router-dom";
+import { assets } from "../../assets/assets";
+import axios from "axios"; 
+
+const EmployerLayout = () => {
+  const { navigate, setUser, axios, user } = useContext(AppContext);
+
+  const sidebarLinks = [
+    { name: "companies", path: "/employer" },
+    { name: "add company", path: "/employer/add-company" },
+    { name: "Jobs", path: "/employer/jobs-list" },
+    { name: "post job", path: "/employer/post-job" },
+    { name: "Applicants", path: "/employer/applicants" },
+  ];
+
+  const logout = async () => {
+    try {
+      const res = await axios.get("http://localhost:4000/auth/logout", {
+        withCredentials: true, 
+      });
+
+      if (res && res.data && res.data.success) {
+        setUser(false);
+        navigate("/");
+        toast.success(res.data.message || "Logged out successfully");
+      } else {
+        toast.error("Logout failed");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(
+        error?.response?.data?.message || "Something went wrong during logout"
+      );
+    }
+  };
+
+  return (
+    <>
+      <div className="flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">
+        <Link to={"/employer"}>
+          <img src={assets.logo} alt="" />
+        </Link>
+        <div className="flex items-center gap-5 text-gray-500">
+          <p>Hi! {user.name}</p>
+          <button
+            onClick={logout}
+            className="border rounded-full text-sm px-4 py-1"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+      <div className="flex">
+        <div className="md:w-64 w-16 border-r h-[550px] text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
+          {sidebarLinks.map((item, index) => (
+            <Link
+              to={item.path} 
+              key={index}
+              className={`flex items-center py-3 px-4 gap-3 ${
+                index === 0
+                  ? "border-r-4 md:border-r-[6px] bg-indigo-500/10 border-indigo-500 text-indigo-500"
+                  : "hover:bg-gray-100/90 border-white text-gray-700"
+              }`}
+            >
+              <p className="md:block hidden text-center">{item.name}</p>
+            </Link>
+          ))}
+        </div>
+        <Outlet />
+      </div>
+    </>
+  );
+};
+
+export default EmployerLayout;
