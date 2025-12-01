@@ -147,12 +147,18 @@ Frontend runs on:
 
 ---
 
-## 🖼 Screenshots (Add your images here)
+## 🖼 Screenshots
 
 
+### 🔐 Login Page
 ![Login](screenshots/login.png)
+
+### 🎓 Student Dashboard
 ![Student Dashboard](screenshots/student.png)
+
+### 🧑‍💼 Employer Dashboard
 ![Employer Dashboard](screenshots/employer.png)
+
 
 
 
