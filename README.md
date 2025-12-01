@@ -151,9 +151,11 @@ Frontend runs on:
 
 ```
 ![Login](screenshots/login.png)
+
 ![Student Dashboard](screenshots/student.png)
+
 ![Employer Dashboard](screenshots/employer.png)
-![Admin Dashboard](screenshots/admin.png)
+
 ```
 
 ---
