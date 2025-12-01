@@ -149,14 +149,12 @@ Frontend runs on:
 
 ## 🖼 Screenshots (Add your images here)
 
-```
+
 ![Login](screenshots/login.png)
-
 ![Student Dashboard](screenshots/student.png)
-
 ![Employer Dashboard](screenshots/employer.png)
 
-```
+
 
 ---
 
